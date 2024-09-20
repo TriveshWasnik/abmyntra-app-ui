@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+}
+p {
+  font-size: 12px;
+  font-weight: 400;
+}
+
+a,
+button {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+::placeholder {
+  color: #696969;
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 400;
+}
+
+.slick-dots li button:before {
+  font-size: 8px;
+}
+
+.react-tel-input .form-control {
+  width: 100% !important;
+}

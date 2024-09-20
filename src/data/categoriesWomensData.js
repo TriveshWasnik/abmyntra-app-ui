@@ -1,0 +1,111 @@
+const categoriesWomensData = [
+  {
+    id: 1,
+    picPath: "../src/assets/images/categories/WFHCasualwear2.png",
+    name: "WFH Casual Wear",
+    discountRange: "40-80",
+    url: "",
+  },
+  {
+    id: 2,
+    picPath: "../src/assets/images/categories/Ethnicwear2.png",
+    name: "Ethnic Wear",
+    discountRange: "50-70",
+    url: "",
+  },
+  {
+    id: 3,
+    picPath: "../src/assets/images/categories/Westernwear2.png",
+    name: "Western Wear",
+    discountRange: "50-70",
+    url: "",
+  },
+  {
+    id: 4,
+    picPath: "../src/assets/images/categories/category25Sleepwear.png",
+    name: "Innerwear & Sleepwear",
+    discountRange: "UP TO 70",
+    url: "",
+  },
+
+  {
+    id: 5,
+    picPath: "../src/assets/images/categories/Activewear2.png",
+    name: "Active Wear",
+    discountRange: "30-70",
+    url: "",
+  },
+  {
+    id: 6,
+    picPath: "../src/assets/images/categories/category11BeautyMakeup.png",
+    name: "Beauty & Makeup",
+    discountRange: "UP TO 80",
+    url: "",
+  },
+  {
+    id: 7,
+    picPath: "../src/assets/images/categories/Kidswear2.png",
+    name: "Kids Wear",
+    discountRange: "40-70",
+    url: "",
+  },
+  {
+    id: 8,
+    picPath: "../src/assets/images/categories/WomensFootwear2.png",
+    name: "Footwear",
+    discountRange: "40-80",
+    url: "",
+  },
+  {
+    id: 9,
+    picPath: "../src/assets/images/categories/Handbags2.png",
+    name: "Handbags & Bags",
+    discountRange: "40-80",
+    url: "",
+  },
+  {
+    id: 10,
+    picPath: "../src/assets/images/categories/category9Watches.png",
+    name: "Watches",
+    discountRange: "UP TO 70",
+    url: "",
+  },
+  {
+    id: 11,
+    picPath: "../src/assets/images/categories/Jewellery2.png",
+    name: "Jewellery",
+    discountRange: "UP TO 80",
+    url: "",
+  },
+  {
+    id: 12,
+    picPath: "../src/assets/images/categories/HomeFurnishing.png",
+    name: "Home Furnishings",
+    discountRange: "40-70",
+    url: "",
+  },
+  {
+    id: 13,
+    picPath: "../src/assets/images/categories/category20HeadphonesSpeakers.png",
+    name: "Headphones & Speakers",
+    discountRange: "UP TO 70",
+    url: "",
+  },
+  {
+    id: 14,
+    picPath: "../src/assets/images/categories/SizeInclusiveStyles2.png",
+    name: "Size-Inclusive Styles",
+    discountRange: "UP TO 70",
+    url: "",
+  },
+
+  {
+    id: 15,
+    picPath: "../src/assets/images/categories/Sunglasses2.png",
+    name: "Sunglasses",
+    discountRange: "UP TO 70",
+    url: "",
+  },
+];
+
+export { categoriesWomensData };
