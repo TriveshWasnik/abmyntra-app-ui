@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
+import MyCarousel from "../components/Carousel.jsx"
 import { useSelector } from "react-redux";
 import Container from "../ui/Container";
 import pic4080OffBanner from "../assets/images/banners/4080OffBanner.png";
@@ -13,6 +14,8 @@ import openBannerPic from "../assets/images/banners/menOpenOfferBanner.png";
 import flat70BannerPic from "../assets/images/banners/flat70OffBanner.png";
 import crezyDealsPic from "../assets/images/banners/creazyDealsBanner.png";
 import useGetProducts from "../hooks/useGetProducts.js";
+import { menSlider } from "../data/menCarousel.js";
+import { womenSlider } from "../data/womenCarousel.js";
 // it shows all the product data like clothes, furniture, Electronics etc.
 
 const ProductsPage = () => {
@@ -29,6 +32,11 @@ const ProductsPage = () => {
     (data) => data?.parentCategory[0] === location?.state?.categoryId
   );
 
+  let sliderProduct = null;
+
+  if (location.state?.categoryName === "Mens") { sliderProduct = menSlider; }
+  if (location.state?.categoryName === "Womens") { sliderProduct = womenSlider; }
+
   return (
     <>
       <Container>
@@ -38,6 +46,15 @@ const ProductsPage = () => {
           url="/"
         />
         <Banner pic={pic4080OffBanner} className="px-1 md:px-20" url="/" />
+        <Heading
+          text="COUPONS CORNER"
+          className="text-[20px] md:text-[48px] text-center py-5 md:py-20"
+        />
+        <Banner pic={couponBannerPic} url="/" className="px-1 md:px-20" />
+        <Banner pic={openBannerPic} url="/" className="mt-5" />
+
+        {sliderProduct && <MyCarousel data={sliderProduct} className="my-10" />}
+
         <div className="flex items-center text-gray-500 text-sm mt-5 ml-5">
           <Link to={"/"}>
             <h1 className="text-gray-500">Home / </h1>
@@ -45,12 +62,12 @@ const ProductsPage = () => {
           <h1 className="ml-1">{location.state?.categoryName}</h1>
         </div>
 
-        <h1 className="text-lg font-bold ml-5 my-3">
+        <h1 className="text-[32px] font-bold ml-5 my-3">
           {location.state?.categoryName ?? "No Products"}
         </h1>
 
         {
-          <div className="flex items-center justify-center w-full gap-10 flex-wrap ">
+          <div className="flex items-center justify-center w-full mb-10 gap-10 flex-wrap ">
             {filteredProduct.map((data, idx) => (
               <div
                 key={idx}
@@ -108,12 +125,7 @@ const ProductsPage = () => {
           </div>
         }
 
-        <Heading
-          text="COUPONS CORNER"
-          className="text-[20px] md:text-[48px] text-center py-5 md:py-20"
-        />
-        <Banner pic={couponBannerPic} url="/" className="px-1 md:px-20" />
-        <Banner pic={openBannerPic} url="/" className="mt-5" />
+
         <Banner pic={flat70BannerPic} url="/" />
         <Banner pic={crezyDealsPic} url="/" />
       </Container>

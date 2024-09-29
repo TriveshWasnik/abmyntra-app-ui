@@ -15,9 +15,7 @@ const WishlistPage = () => {
   const navigate = useNavigate();
   async function getProducts() {
     try {
-      // check the current user
-      // get the user uid from users collection
-      // reconnect the products of Perticular user
+
       if (user) {
         const res = await axios.get(
           `https://abmyntra-api.onrender.com/api/v1/wishlist/list`,

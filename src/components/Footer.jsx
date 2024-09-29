@@ -12,9 +12,9 @@ const Footer = () => {
             <span className="font-bold text-blue-700">Contact Us</span>
           </p>
           <p className=" text-[14px]  md:text-[16px]">
-            © 2024 www.myntra.com. All rights reserved.
+            © 2024 www.abmyntra.com. All rights reserved.
           </p>
-          <p className=" text-[14px]  md:text-[16px]">A Flipkart company</p>
+          <p className=" text-[14px]  md:text-[16px]">A Goods company</p>
         </div>
         <hr className="mt-5" />
       </div>

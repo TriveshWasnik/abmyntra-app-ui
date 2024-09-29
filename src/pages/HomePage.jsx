@@ -13,6 +13,8 @@ import appBannerPic from "../assets/images/banners/homeAppBanner.png";
 import CartCategory from "../ui/CartCategory.jsx";
 
 import useGetCategories from "../hooks/useGetCategories.js";
+import Carousel from "../components/Carousel.jsx";
+import { homeSlider } from "../data/HomeCarousel.js";
 
 // Home Page
 function HomePage() {
@@ -65,6 +67,8 @@ function HomePage() {
       <Banner pic={openBannerPic} url="/" className="mt-5" />
       <Banner pic={flat70BannerPic} url="/" />
       <Banner pic={crezyDealsPic} url="/" />
+
+      <Carousel data={homeSlider} />
 
       <Heading
         text="CATEGORIES TO CART"

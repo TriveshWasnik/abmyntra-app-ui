@@ -18,29 +18,18 @@ function ProductDetailsPage() {
 
   const user = useSelector((store) => store.auth.user);
 
-  async function addProductsWishlist() {
-    try {
-      // get the current user
 
+  async function addProductsWishlist() {
+
+    try {
       if (user === null) {
         navigate("/login");
       } else {
-        // fetch the user uid
-        // fetch the product title
-        // set the product data on user collection
-        // display the message
-        const res = await axios.put(
-          `https://abmyntra-api.onrender.com/api/v1/wishlist/addwishlist/${location.state._id}`,
-          {},
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-            withCredentials: true,
-          }
-        );
-        navigate("/wishlist");
-        toast.success("Product Added to the Wishlist");
+        const res = await axios.post(`https://abmyntra-api.onrender.com/api/v1/wishlist/addwishlist`, { productId: location.state._id }, {
+          withCredentials: true,
+        })
+        console.log(res);
+        //navigate("/wishlist")
       }
     } catch (error) {
       console.log(error);
@@ -49,24 +38,14 @@ function ProductDetailsPage() {
 
   async function addProductBag() {
     try {
-      // get the current user
 
       if (user === null) {
         navigate("/login");
       } else {
-        const res = await axios.post(
-          `https://abmyntra-api.onrender.com/api/v1/cart/addToCart`,
-          {},
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-            withCredentials: true,
-          }
-        );
-        console.log(res.data);
-        //navigate("/cart");
-        //toast.success("Product Added to the Cart");
+        const res = await axios.post(`https://abmyntra-api.onrender.com/api/v1/cart/addToCart`, { productId: location.state._id, quantity: 1 }, {
+          withCredentials: true,
+        })
+        console.log(res);
       }
     } catch (error) {
       console.log(error);
@@ -75,17 +54,18 @@ function ProductDetailsPage() {
 
   return (
     <Container>
-      <div className="flex flex-col md:flex-row justify-center">
-        <div className="grid grid-rows-2 max-w-[600px]">
-          <img src={location.state.productImage1} alt="" className="p-1 " />
-          <div className="flex w-1/3 h-1/3">
-            <img src={location.state.productImage2} alt="" className="p-1" />
-            <img src={location.state.productImage3} alt="" className="p-1" />
-            <img src={location.state.productImage4} alt="" className="p-1 " />
+
+      <div className="flex flex-col md:flex-row justify-center mb-10">
+        <div className="flex flex-col max-w-[600px]">
+          <img src={location.state.productImage1} alt="" className="" />
+          <div className="flex w-1/3 h-1/3 py-1">
+            <img src={location.state.productImage2} alt="" className="" />
+            <img src={location.state.productImage3} alt="" />
+            <img src={location.state.productImage4} alt="" />
           </div>
         </div>
 
-        <div className="-mt-40 md:mt-0 p-5 max-w-[600px]">
+        <div className="-mt-40 md:mt-0 p-10 max-w-[600px]">
           <h1 className="text-xl md:text-2xl font-bold">
             {location.state.brand}
           </h1>

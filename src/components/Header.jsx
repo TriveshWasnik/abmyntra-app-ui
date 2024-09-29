@@ -30,7 +30,7 @@ const Header = () => {
       const res = await axios.get(
         "https://abmyntra-api.onrender.com/api/v1/user/logout",
         {
-          withCredentials: true,
+          withCredentials: true
         }
       );
       if (res.data.success) {
@@ -50,18 +50,7 @@ const Header = () => {
     .filter((par) => par.parentCategory.length == 0)
     .reverse(); // Main Category Mens Womans Kids
 
-  const womensCategories = categories
-    .filter((par) => par.parentCategory == "66e09fb61e9f1f7c9225c0af")
-    .reverse(); // womens sub categories
-  const mensCategories = categories
-    .filter((par) => par.parentCategory == "66e09a0b1e9f1f7c9225c08a")
-    .reverse(); // Mens sub categories
 
-  const kidsCategories = categories
-    .filter((par) => par.parentCategory == "66e0a48b1e9f1f7c9225c0d4")
-    .reverse(); // Kids Sub Categories
-
-  const [isShowSubmenu, setIsShowSubmenu] = useState(false);
 
   return (
     <header className=" bg-white">
@@ -75,7 +64,7 @@ const Header = () => {
             </div>
             <ul className={`flex items-center`}>
               {mainCategories?.map((item, idx) => (
-                <li key={idx} onClick={() => setIsShowSubmenu(!isShowSubmenu)}>
+                <li key={idx} >
                   <NavLink
                     to={"/products"}
                     state={{ categoryName: item.name, categoryId: item._id }}

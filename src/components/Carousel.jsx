@@ -51,15 +51,7 @@ function Carousel({ data, className = "" }) {
       <Slider {...settings}>
         {data.map((item) => (
           <div key={item.id} className="text-center text-[#4f2009]">
-            <img src={item.image} alt="image" className="w-full max-h-fit" />
-            {item.title && (
-              <p className="mt-3 text-[20px] font-medium">{item.title}</p>
-            )}
-            {item.discountRange && (
-              <p className="text-[28px] font-bold -mt-1">
-                {item.discountRange}% OFF
-              </p>
-            )}
+            <img src={item.image} alt="image" className="w-full min-h-[480px]" />
           </div>
         ))}
       </Slider>
