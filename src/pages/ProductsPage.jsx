@@ -5,14 +5,14 @@ import { Carousel } from "react-responsive-carousel";
 import MyCarousel from "../components/Carousel.jsx"
 
 import Container from "../ui/Container";
-import pic4080OffBanner from "../assets/images/banners/4080OffBanner.png";
+import pic4080OffBanner from "../../public/assets/images/banners/4080OffBanner.png";
 import Banner from "../components/Banner.jsx";
-import picFlat300Off from "../assets/images/banners/flat300OffBanner.png";
+import picFlat300Off from "../../public/assets/images/banners/flat300OffBanner.png";
 import Heading from "../ui/Heading.jsx";
-import couponBannerPic from "../assets/images/banners/homeCouponBanner.png";
-import openBannerPic from "../assets/images/banners/menOpenOfferBanner.png";
-import flat70BannerPic from "../assets/images/banners/flat70OffBanner.png";
-import crezyDealsPic from "../assets/images/banners/creazyDealsBanner.png";
+import couponBannerPic from "../../public/assets/images/banners/homeCouponBanner.png";
+import openBannerPic from "../../public/assets/images/banners/menOpenOfferBanner.png";
+import flat70BannerPic from "../../public/assets/images/banners/flat70OffBanner.png";
+import crezyDealsPic from "../../public/assets/images/banners/creazyDealsBanner.png";
 import axios from "axios";
 
 import { menSlider } from "../data/menCarousel.js";

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import logo from "../assets/images/logo.png";
+import logo from "../../public/assets/images/logo.png";
 import Container from "../ui/Container";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import SearchBar from "./SearchBar";
