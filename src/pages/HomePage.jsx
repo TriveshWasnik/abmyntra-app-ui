@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import pic4080OffBanner from "../../public/assets/images/banners/4080OffBanner.png";
+import pic4080OffBanner from "/assets/images/banners/4080OffBanner.png";
 import { useDispatch } from "react-redux";
 import { setSlidesPerRow } from "../store/productSlice.js";
 import Banner from "../components/Banner.jsx";
-import picFlat300Off from "../../public/assets/images/banners/flat300OffBanner.png";
+import picFlat300Off from "/assets/images/banners/flat300OffBanner.png";
 import Heading from "../ui/Heading.jsx";
-import couponBannerPic from "../../public/assets/images/banners/homeCouponBanner.png";
-import openBannerPic from "../../public/assets/images/banners/menOpenOfferBanner.png";
-import flat70BannerPic from "../../public/assets/images/banners/flat70OffBanner.png";
-import crezyDealsPic from "../../public/assets/images/banners/creazyDealsBanner.png";
-import appBannerPic from "../../public/assets/images/banners/homeAppBanner.png";
+import couponBannerPic from "/assets/images/banners/homeCouponBanner.png";
+import openBannerPic from "/assets/images/banners/menOpenOfferBanner.png";
+import flat70BannerPic from "/assets/images/banners/flat70OffBanner.png";
+import crezyDealsPic from "/assets/images/banners/creazyDealsBanner.png";
+import appBannerPic from "/assets/images/banners/homeAppBanner.png";
 import CartCategory from "../ui/CartCategory.jsx";
 
 

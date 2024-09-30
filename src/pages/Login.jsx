@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import pic from "../../public/assets/images/banners/off300.png"
+import pic from "/assets/images/banners/off300.png"
 import Input from "../ui/Input";
 import { FaUser, FaEnvelope, FaKey } from "react-icons/fa";
 import Button from "../ui/Button";
