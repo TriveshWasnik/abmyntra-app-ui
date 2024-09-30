@@ -8,49 +8,21 @@ import { HiOutlineShoppingBag } from "react-icons/hi";
 import { FiLogOut } from "react-icons/fi";
 import MenuItem from "../ui/MenuItem.jsx";
 
-import { useDispatch, useSelector } from "react-redux";
-import { logoutUser } from "../store/authSlice.js";
 import { toast } from "react-hot-toast";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../store/userSlice.js";
 
 // Header Component
 
 const Header = () => {
-  // check user login or not
-  const user = useSelector((store) => store.auth.user);
   const dispatch = useDispatch();
-  // Navigate the React Route
+  const currentUser = useSelector(store => store.user.currentUser);
+
+  const menuName = location.search.split("=")[1];
+
+  const [searchKeyword, setSearchKeyword] = useState("");
+
   const navigate = useNavigate();
-  // defined and set the value of search
-  const [search, setSearch] = useState("");
-  // logout the current user
-
-  async function logoutHandler() {
-    try {
-      const res = await axios.get(
-        "https://abmyntra-api.onrender.com/api/v1/user/logout",
-        {
-          withCredentials: true
-        }
-      );
-      if (res.data.success) {
-        toast.success("User LoggedOut Successfully");
-        dispatch(logoutUser(null));
-        navigate("/login");
-      } else {
-        toast.error("res.data.message");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  const categories = useSelector((store) => store.category.categories);
-  const mainCategories = categories
-    .filter((par) => par.parentCategory.length == 0)
-    .reverse(); // Main Category Mens Womans Kids
-
-
 
   return (
     <header className=" bg-white">
@@ -63,41 +35,35 @@ const Header = () => {
               </Link>
             </div>
             <ul className={`flex items-center`}>
-              {mainCategories?.map((item, idx) => (
-                <li key={idx} >
-                  <NavLink
-                    to={"/products"}
-                    state={{ categoryName: item.name, categoryId: item._id }}
-                    className={`border-b-4 relative  border-transparent flex flex-col items-center text-[#3E3F45] px-1 md:px-3 py-4 text-[14px]  tracking-wide `}
-                  >
-                    {item.name}
-                  </NavLink>
-                </li>
-              ))}
-
-              {user && user.isAdmin ? (
-                <li>
-                  <NavLink
-                    to={"/dashboard"}
-                    className={`border-b-4  border-transparent flex flex-col items-center text-[#3E3F45] px-1 md:px-3 py-4 text-[14px]  tracking-wide `}
-                  >
-                    Dashboard
-                  </NavLink>
-                </li>
-              ) : (
-                ""
-              )}
+              <li >
+                <NavLink to={`/products?category=Mens`}
+                  className={({ isActive }) => `${isActive && menuName == "Mens" ? "border-b-4 border-[#3E3F45]" : ""} text-[#3E3F45] px-1 md:px-3 py-4 text-[14px]  tracking-wide `}
+                >
+                  Mens
+                </NavLink>
+              </li>
+              <li >
+                <NavLink to={`/products?category=Womens`}
+                  className={({ isActive }) => `${isActive && menuName == "Womens" ? "border-b-4 border-[#3E3F45]" : ""} text-[#3E3F45] px-1 md:px-3 py-4 text-[14px]  tracking-wide `}                >
+                  Womens
+                </NavLink>
+              </li>
+              <li >
+                <NavLink to={`/products?category=Kids`}
+                  className={({ isActive }) => `${isActive && menuName == "Kids" ? "border-b-4 border-[#3E3F45]" : ""} text-[#3E3F45] px-1 md:px-3 py-4 text-[14px]  tracking-wide `}                >
+                  Kids
+                </NavLink>
+              </li>
             </ul>
           </nav>
           <div className="flex  items-center gap-2 md:gap-4">
-            <SearchBar
-              value={search}
+            <SearchBar value={searchKeyword}
+              onChange={(e) => setSearchKeyword(e.target.value)}
               placeholder="Search for products, brands and more"
-              onChange={(e) => setSearch(e.target.value)}
-              to={`/search/${search}`}
+              onClick={() => navigate(`/products?keyword=${searchKeyword}`)}
             />
             <ul className={`flex items-center`}>
-              {user !== null ? (
+              {currentUser !== null ? (
                 <>
                   <MenuItem
                     to="/wishlist"
@@ -109,8 +75,11 @@ const Header = () => {
                     icon={<HiOutlineShoppingBag size={"18px"} />}
                     name="Bag"
                   />
-                  <li onClick={logoutHandler}>
-                    <NavLink
+                  <li>
+                    <NavLink onClick={() => {
+                      dispatch(logout(null));
+                      toast.success("User logout Successfully")
+                    }}
                       className={`border-b-4  border-transparent flex flex-col items-center text-[#3E3F45] md:px-3 py-4 text-[11px]  tracking-widest `}
                     >
                       <div className="pb-1">

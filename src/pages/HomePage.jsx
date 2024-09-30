@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import pic4080OffBanner from "../assets/images/banners/4080OffBanner.png";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setSlidesPerRow } from "../store/productSlice.js";
 import Banner from "../components/Banner.jsx";
 import picFlat300Off from "../assets/images/banners/flat300OffBanner.png";
@@ -12,9 +12,13 @@ import crezyDealsPic from "../assets/images/banners/creazyDealsBanner.png";
 import appBannerPic from "../assets/images/banners/homeAppBanner.png";
 import CartCategory from "../ui/CartCategory.jsx";
 
-import useGetCategories from "../hooks/useGetCategories.js";
+
 import Carousel from "../components/Carousel.jsx";
 import { homeSlider } from "../data/HomeCarousel.js";
+import axios from "axios";
+import Cart from "../ui/Cart.jsx";
+import { categoriesData } from "../data/categoriesData.js";
+
 
 // Home Page
 function HomePage() {
@@ -24,32 +28,36 @@ function HomePage() {
     dispatch(setSlidesPerRow(5));
   }, []);
 
-  (async function () {
-    await useGetCategories();
-  })();
 
-  const categories = useSelector((store) => store.category.categories);
 
-  /* const mainCategories = categories
-    .filter((par) => par.parentCategory.length == 0)
-    .reverse(); // Main Category Mens Womans Kids */
+  const [products, setProducts] = useState([]);
 
-  const womensCategories = categories
-    .filter((par) => par.parentCategory == "66e09fb61e9f1f7c9225c0af")
-    .reverse(); // womens sub categories
-  const mensCategories = categories
-    .filter((par) => par.parentCategory == "66e09a0b1e9f1f7c9225c08a")
-    .reverse(); // Mens sub categories
+  async function getProducts() {
+    try {
+      const res = await axios.get(
+        `${import.meta.env.VITE_API_BASE_URL}/api/v1/product`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      let myproducts = res.data.products;
+      const shirt = myproducts.filter((prod) => prod.category.includes("Shirts"))[0];
+      const tshirt = myproducts.filter((prod) => prod.category.includes("T-Shirts"))[0];
+      const casualWear = myproducts.filter((prod) => prod.category.includes("Casual Wear"))[0];
+      const jeans = myproducts.filter((prod) => prod.category.includes("Jeans"))[0]
+      setProducts([shirt, tshirt, casualWear, jeans]);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
-  const kidsCategories = categories
-    .filter((par) => par.parentCategory == "66e0a48b1e9f1f7c9225c0d4")
-    .reverse(); // Kids Sub Categories
+  useEffect(() => {
+    getProducts();
+  }, [])
 
-  const filteredCategories = [
-    ...mensCategories,
-    ...womensCategories,
-    ...kidsCategories,
-  ];
+
 
   return (
     <>
@@ -75,15 +83,29 @@ function HomePage() {
         className="text-[20px] md:text-[48px] text-center py-3 md:py-20"
       />
       <div className="flex items-center justify-center w-full gap-10 flex-wrap ">
-        {filteredCategories?.map((item) => (
-          <CartCategory
-            key={item._id}
-            pic={item.categoryPic}
-            name={item.name}
-            discount={`40-70% OFF`}
-            state={{ categoryName: item.name, categoryId: item._id }}
-          />
-        ))}
+        {
+          categoriesData?.map((category, idx) =>
+            < CartCategory key={idx} category={category} />
+          )
+        }
+
+
+
+      </div>
+
+
+      <Heading
+        text="Our Bestseller"
+        className="text-[20px] md:text-[48px] text-center py-3 md:py-20"
+      />
+      <div className="flex items-center justify-center w-full gap-10 flex-wrap ">
+        {
+
+          products?.map((item) =>
+            <Cart data={item} />
+          )
+        }
+
       </div>
       <Banner
         pic={appBannerPic}

@@ -5,12 +5,11 @@ import { Provider } from "react-redux";
 import store from "./store/store.js";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import HomePage from "./pages/HomePage.jsx";
-import Login from "./components/Login.jsx";
+import Login from "./pages/Login.jsx";
 import ProductsPage from "./pages/ProductsPage.jsx";
 import ProductDetailsPage from "./pages/ProductDetailsPage.jsx";
 import WishlistPage from "./pages/WishlistPage.jsx";
-import SearchPage from "./pages/SearchPage.jsx";
-import Dashboard from "./pages/Dashboard.jsx";
+
 import CartPage from "./pages/CartPage.jsx";
 
 // create a navigation route
@@ -32,20 +31,12 @@ const router = createBrowserRouter([
         element: <ProductsPage />,
       },
       {
-        path: "details/:slug",
+        path: "details/:id",
         element: <ProductDetailsPage />,
       },
       {
         path: "wishlist",
         element: <WishlistPage />,
-      },
-      {
-        path: "search/:keyword",
-        element: <SearchPage />,
-      },
-      {
-        path: "dashboard",
-        element: <Dashboard />,
       },
       {
         path: "cart",

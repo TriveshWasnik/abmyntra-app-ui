@@ -38,5 +38,10 @@
     "postcss": "^8.4.41",
     "tailwindcss": "^3.4.9",
     "vite": "^5.4.0"
-  }
+  },
+  "description": "ABMyntra is a clone of the popular e-commerce platform Myntra. The application is designed to provide users with a seamless online shopping experience, featuring product listings, user authentication, and more. This project is built with React, Redux, Tailwind CSS, and Firebase for the frontend",
+  "main": "eslint.config.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
